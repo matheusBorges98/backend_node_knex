@@ -21,6 +21,21 @@ app.use((error, req, res, next)=>{
     res.json({ error: error.message})
 })
 
-app.listen(3333, ()=> console.log('Server is running'))
+app.listen(3333, (err)=>{
+    
+    console.log('\n######################################################################');
+	console.log('---------------------------API VALLECIA::-------------------------------');
+	console.log('==> ' + new Date());
+
+	if (err) {
+		console.log('==> Não foi possível usar a porta 3333 ', err);
+	} else {
+		console.log('-----------------==> Rodando na porta 3333 <==----------------------');
+	}
+
+	console.log('######################################################################\n');
+
+    
+});
 
 module
