@@ -6,25 +6,29 @@ module.exports = {
        
        try{
         const results = await knex('users')
+        
         return res.json(results)
 
        }catch(err){
-
-           console.log(err)
+            res.status(500).send("Houve uma falha na requisição "+ err)
        }
       
     },
 
     async create(req, res, next){
+        console.log(req.body)
         try{
             const {username} = req.body
+            console.log(username)
             await knex('users').insert({
                 username
             })
 
             return res.status(201).send();
         }catch(error){
-            next(error)
+            res.status(500).send("Houve uma falha ao inserir os dados, "+ error)
+            console.log(error)
+            //next(error)
         }
     },
 
