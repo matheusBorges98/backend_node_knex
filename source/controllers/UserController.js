@@ -13,20 +13,13 @@ module.exports = {
       
     },
 
-    async create(req, res, next){
-        console.log(req.body)
+    async create(req, res){
         try{
-            const {username} = req.body
-            console.log(username)
-            await knex('users').insert({
-                username
-            })
-
-            return res.status(201).send();
+            const data = req.body        
+            res.json(await userService.create(data)).status(201).send("Created")
         }catch(error){
-            res.status(500).send("Houve uma falha ao inserir os dados, "+ error)
             console.log(error)
-            //next(error)
+            //res.status(500)
         }
     },
 
@@ -49,14 +42,12 @@ module.exports = {
     async delete(req,res,next){
         try{
             const {id} = req.params
-            await knex('users')
-            .where({id})
-            .del()
-
-            return res.send()
+            
+            res.status(204)
+                        .json(await userService.delete(id))
             
         }catch(error){
-            next(error)
+           console.log(error)
         }
     }
 
