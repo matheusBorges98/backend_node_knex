@@ -1,6 +1,10 @@
-const express = require('express')
-const knex = require('./database')
-const routes = require ('./routes')
+const express = require('express');
+const knex = require('./database');
+const routes = require ('./routes/routes.js');
+
+require('dotenv').config()
+
+const PORT = process.env.PORT || 3333;
 
 const app = express()
 
@@ -18,19 +22,19 @@ app.use((req, res,next)=>{
 
 app.use((error, req, res, next)=>{
     res.status(error.status || 500)
-    res.json({ error: error.message})
+    res.json({ error: error.message, code:error.status})
 })
 
-app.listen(3333, (err)=>{
+app.listen(PORT, (err)=>{
     
     console.log('\n######################################################################');
 	console.log('---------------------------API VALLECIA::-------------------------------');
 	console.log('==> ' + new Date());
 
 	if (err) {
-		console.log('==> Não foi possível usar a porta 3333 ', err);
+		console.log('==> Não foi possível usar a porta ', PORT, err);
 	} else {
-		console.log('-----------------==> Rodando na porta 3333 <==----------------------');
+		console.log('-----------------==> Rodando na porta', PORT, ' <==----------------------');
 	}
 
 	console.log('######################################################################\n');
