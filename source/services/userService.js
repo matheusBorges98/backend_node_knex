@@ -13,27 +13,24 @@ module.exports = {
    },
 
    async create(data){
-       let message;
+       let crt;
        try{
-            const results = await usersModel.createUsers(data);
-            console.log(results)
-            message = results;
+            crt = await usersModel.createUsers(data);
+           
        }catch(err){
-           throw err;
+           return err
        }
-       return { message }
+
+       return crt;
    },
 
    async delete(id){
-       let message;
        try{
            const result = await usersModel.deleteUsers(id);
 
-           message = result;
        }catch(err){
-           throw err;
+           return err;
        }
-       return { message }
    }
 
 }

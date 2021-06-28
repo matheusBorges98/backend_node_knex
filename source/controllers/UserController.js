@@ -13,14 +13,16 @@ module.exports = {
       
     },
 
-    async create(req, res){
+    async create(req, res, next){
+        let crt;
         try{
             const data = req.body        
-            res.json(await userService.create(data)).status(201).send("Created")
+            crt = await userService.create(data)
+           
         }catch(error){
             console.log(error)
-            //res.status(500)
         }
+        return res.send(crt)
     },
 
     async update(req, res, next){
@@ -42,12 +44,11 @@ module.exports = {
     async delete(req,res,next){
         try{
             const {id} = req.params
-            
-            res.status(204)
-                        .json(await userService.delete(id))
+            let dl = await userService.delete(id)
+            res.sendStatus(res.statusCode)
             
         }catch(error){
-           console.log(error)
+          next(error)
         }
     }
 

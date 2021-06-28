@@ -25,23 +25,26 @@ module.exports = {
    },
 
    async createUsers(data){
+       let result;
        try{
-            const result = await knex('users').insert(data);
-            
-            return result;
-           
+            result = await knex('users').insert(data);
+
+            result = {"Status":"Created", "Code":400}
+
        }catch(err){
-           return {"Falha ":err.detail, "Motivo":err.constraint}
+           console.log(err)
+           return {"Error ":err.detail}
        }
+       return result;
    },
 
    async deleteUsers(id){
        try{
-           return await knex('users')
+           const result = await knex('users')
             .where({id})
             .del()
        }catch(err){
-          next(err)
+          return {"Error ":err.detail}
        }
    }
 
