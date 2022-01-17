@@ -3,10 +3,11 @@ require('dotenv').config()
 module.exports = {
 
   development: {
-    client: 'pg',
+    client: 'mysql',
     connection: {
       host:process.env.DB_HOST,
       database: process.env.DB_DATABASE,
+      port:process.env.DB_PORT,
       user: process.env.DB_USER,
       password: process.env.DB_PASS,
     },
@@ -16,10 +17,10 @@ module.exports = {
     },
     migrations:{
       tableName:('knex_migrations'),
-      directory:'/node_knex/source/database/migrations'
+      directory:'./source/database/migrations'
     },
     seeds:{
-      directory:'/node_knex/source/database/seeds'
+      directory:'./source/database/seeds'
     }
   },
 };

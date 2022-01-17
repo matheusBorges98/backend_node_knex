@@ -5,19 +5,19 @@ module.exports = {
    async getUsers(data){
        try{
             let query = `
-                select * from USERS u where u.ID = u.ID
+                select * from users
            `
-            data.cidade ? query += 
-            ` and u.CIDADE = :cidade` : "";
+            // data.cidade ? query += 
+            // ` and u.CIDADE = :cidade` : "";
 
-            data.genero ? query += 
-            ` and u.GENERO = :genero` : "";
+            // data.genero ? query += 
+            // ` and u.GENERO = :genero` : "";
 
-            query += ` order by u.UPDATED_AT desc`;
+            // query += ` order by u.UPDATED_AT desc`;
 
             const results = await knex.raw(query,data);
-            
-            return results.rows
+            console.log(results)
+            return results[0]
        }catch(err){
            return err
        }
@@ -35,6 +35,7 @@ module.exports = {
            console.log(err)
            return {"Error ":err.detail}
        }
+
        return result;
    },
 
