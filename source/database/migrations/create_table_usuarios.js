@@ -21,7 +21,7 @@ exports.up = knex => knex.schema.createTable('usuarios', table=>{
 
     table.text('cpf_cnpj')
 
-    table.bigInteger('tipo_usuario')
+    table.integer('tipo_usuario')
     .unsigned()
     .index()
     .references('id')

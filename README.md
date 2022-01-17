@@ -2,11 +2,12 @@
 
 ## CRIAR BASE
 
-### npx knex migrate:latest
-### knex migrate:up 001_migration_name.js
-#### ou migracao 
+### Knex migrate:
+<p>npx knex migrate: list</p>
+<p>EX: npx knex migrate:up 001_migration_name.js</p>
 
-## node version 14
+## Node Version 14
 
-## npx start
+## Iniciando o projeto
+<p>npx start</p>
 
