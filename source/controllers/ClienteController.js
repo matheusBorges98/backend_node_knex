@@ -1,11 +1,11 @@
-const userService = require('../services/userService')
+const clientesService = require('../services/clientesService')
 
 module.exports = {
 
    async index(req, res) {
        
        try{
-            res.status(200).json(await userService.get(req.body))
+            res.status(200).json(await clientesService.get(req.body))
        }catch(err){
            console.log(err.message, err.status)
             res.status(500).send(`Response: ${err.message} ${err.status}`)
@@ -17,7 +17,7 @@ module.exports = {
         let crt;
         try{
             const data = req.body        
-            crt = await userService.create(data)
+            crt = await clientesService.create(data)
            
         }catch(error){
             console.log(error)
@@ -44,7 +44,7 @@ module.exports = {
     async delete(req,res,next){
         try{
             const {id} = req.params
-            let dl = await userService.delete(id)
+            let dl = await clientesService.delete(id)
             res.sendStatus(res.statusCode)
             
         }catch(error){

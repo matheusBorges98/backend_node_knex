@@ -1,22 +1,15 @@
-const knex = require('../database/');
+const knex = require('../database');
 
 module.exports = {
 
-   async getUsers(data){
+   async getCliente(data){
        try{
             let query = `
-                select * from users
+                select * from cliente u order by u.updated_at DESC
            `
-            // data.cidade ? query += 
-            // ` and u.CIDADE = :cidade` : "";
-
-            // data.genero ? query += 
-            // ` and u.GENERO = :genero` : "";
-
-            // query += ` order by u.UPDATED_AT desc`;
 
             const results = await knex.raw(query,data);
-            console.log(results)
+
             return results[0]
        }catch(err){
            return err
@@ -24,10 +17,10 @@ module.exports = {
        
    },
 
-   async createUsers(data){
+   async createCliente(data){
        let result;
        try{
-            result = await knex('users').insert(data);
+            result = await knex('cliente').insert(data);
 
             result = {"Status":"Created", "Code":400}
 
@@ -39,9 +32,9 @@ module.exports = {
        return result;
    },
 
-   async deleteUsers(id){
+   async deleteCliente(id){
        try{
-           const result = await knex('users')
+           const result = await knex('cliente')
             .where({id})
             .del()
        }catch(err){

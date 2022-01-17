@@ -1,11 +1,11 @@
 
-const usersModel = require('../models/users');
+const clientesModel = require('../models/clientes');
 
 module.exports = {
 
    async get(data){
        try{
-            const results = await usersModel.getUsers(data);
+            const results = await clientesModel.getCliente(data);
             return results
        }catch(err){
            return err
@@ -15,7 +15,7 @@ module.exports = {
    async create(data){
        let crt;
        try{
-            crt = await usersModel.createUsers(data);
+            crt = await clientesModel.createCliente(data);
            
        }catch(err){
            return err
@@ -26,7 +26,7 @@ module.exports = {
 
    async delete(id){
        try{
-           const result = await usersModel.deleteUsers(id);
+           const result = await clientesModel.deleteCliente(id);
 
        }catch(err){
            return err;

@@ -1,6 +1,8 @@
 const express = require('express');
 const knex = require('./database');
-const routes = require ('./routes/routes.js');
+const clienteRoutes = require ('./routes/clienteRoutes.js');
+
+const usuarioRoutes = require ('./routes/usuarioRoutes.js');
 
 require('dotenv').config()
 
@@ -9,7 +11,9 @@ const PORT = process.env.PORT || 3333;
 const app = express()
 
 app.use(express.json())
-app.use(routes)
+app.use(clienteRoutes)
+app.use(usuarioRoutes)
+
 
 
 //notFound
@@ -29,7 +33,7 @@ app.use((err, req, res, next)=>{
 app.listen(PORT, (err)=>{
     
     console.log('\n######################################################################');
-	console.log('---------------------------API VALLECIA::-------------------------------');
+	console.log('---------------------------API PrestaServ::-------------------------------');
 	console.log('==> ' + new Date());
 
 	if (err) {
