@@ -20,5 +20,5 @@ npx knex migrate:up create_table_tipo_usuario.js </p>
 ## Node Version 14
 
 ## Iniciando o projeto
-<p>npx start</p>
+<p>npm start</p>
 
