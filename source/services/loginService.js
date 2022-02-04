@@ -15,12 +15,9 @@ module.exports = {
                 }]
 
             }else{
-                let id          = userLogado[0].id;
-                let tokenCode   = jwt.sign({ id }, process.env.SECRET, {
-                    expiresIn: 3600 // expires in 1h
-                });
-                
-               userLogado[0].token = tokenCode
+                let login           = userLogado[0].login;
+                let tokenCode       = jwt.sign({ login }, process.env.SECRET, {expiresIn: 3600});
+                userLogado[0].token = tokenCode
             }
         }catch(err){
             return err

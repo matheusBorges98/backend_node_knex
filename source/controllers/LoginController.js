@@ -2,21 +2,18 @@ const loginService = require('../services/loginService')
 
 module.exports = {
 
-   async logar(req, res, next) {
-       
+   async logar(req, res) {
         let userLogado;
 
         try{
             const data = req.body        
             userLogado = await loginService.logar(data)
+            return res.send(userLogado)
+
         }catch(error){
             console.log(error)
             return res.status(400).send(`Houve um erro na requisição, por favor tente novamente mais tarde. Erro: ${error}`)
         }
-
-       
-        return res.send(userLogado)
-      
     },
 
     // async deslogar(req, res, next){
